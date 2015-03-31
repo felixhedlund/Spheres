@@ -8,7 +8,7 @@
         <!--Game View Controller-->
         <scene sceneID="CtS-rA-C9T">
             <objects>
-                <viewController id="LVB-YS-i5n" customClass="GameViewController" customModule="SphereHunt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="LVB-YS-i5n" customClass="GameViewController" customModule="Spheres" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PCf-gQ-wO7"/>
                         <viewControllerLayoutGuide type="bottom" id="b3d-qh-BLL"/>
@@ -134,6 +134,7 @@
                     </view>
                     <connections>
                         <outlet property="currentScoreLabel" destination="bhM-n0-pH7" id="KOj-oU-swf"/>
+                        <outlet property="explanationBoard" destination="hm6-S2-bla" id="0nn-uF-zyP"/>
                         <outlet property="highScoreLabel" destination="ff5-fl-0gw" id="JJA-LT-dDP"/>
                         <outlet property="musicButton" destination="leW-SZ-uKl" id="O3M-UI-heZ"/>
                         <outlet property="pauseButton" destination="7CB-8C-bc3" id="f96-Nt-Z3a"/>

@@ -10,6 +10,7 @@ import Foundation
 
 class GameState {
     var highScore: Int
+    var playedBefore: Bool
     
     class var sharedInstance: GameState {
         struct Singleton {
@@ -22,17 +23,19 @@ class GameState {
     init() {
         // Init
         highScore = 0
-        
+        playedBefore = false
         // Load game state
         let defaults = NSUserDefaults.standardUserDefaults()
         
         highScore = defaults.integerForKey("highScore")
+        playedBefore = defaults.boolForKey("playedBefore")
     }
     
     func saveState() {
         // Store in user defaults
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setInteger(highScore, forKey: "highScore")
+        defaults.setBool(playedBefore, forKey: "playedBefore")
         NSUserDefaults.standardUserDefaults().synchronize()
     }
 }

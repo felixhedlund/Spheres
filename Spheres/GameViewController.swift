@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var pieLabel: UILabel!
     @IBOutlet weak var musicButton: UIImageView!
     @IBOutlet weak var scoreBoard: UIImageView!
+    @IBOutlet weak var explanationBoard: UIImageView!
     @IBOutlet weak var highScoreLabel: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
     var tapGestureRecognizer: UITapGestureRecognizer!
@@ -64,12 +65,24 @@ class GameViewController: UIViewController {
         scoreBoard.hidden = true
         highScoreLabel.hidden = true
         currentScoreLabel.hidden = true
-        
+    
         pie.hidden = true
         pieLabel.hidden = true
         skView.presentScene(scene)
         gameEngine = GameEngine(controller: self, scene: scene)
         gameEngine.startGame()
+        
+        let playedBefore = GameState.sharedInstance.playedBefore
+        if(!playedBefore){
+            explanationBoard.image = UIImage(named: "ExplanationBoard")
+            explanationBoard.hidden = false
+            
+            let pauseRecognizer3 = UITapGestureRecognizer(target: self, action:Selector("tapPauseButton:"));
+            pauseRecognizer3.numberOfTapsRequired = 1;
+            explanationBoard.addGestureRecognizer(pauseRecognizer3)
+            
+            self.tapPauseButton(self.pauseButton)
+        }
     }
     
     override func shouldAutorotate() -> Bool {

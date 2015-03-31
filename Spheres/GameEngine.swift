@@ -47,6 +47,9 @@ class GameEngine: NSObject{
         gameTimer.invalidate()
         self.scene.pausePieTimer()
         self.scene.pauseGame()
+        
+        if(GameState.sharedInstance.playedBefore == true){
+        
         self.controller.scoreBoard.hidden = false
         self.controller.highScoreLabel.text = "High Score: " + String(self.highScore)
         self.controller.highScoreLabel.hidden = false
@@ -63,11 +66,18 @@ class GameEngine: NSObject{
             self.controller.currentScoreLabel.text = "Current Score: " + String(score)
         }
         self.controller.currentScoreLabel.hidden = false
+        }
     }
     func playGame(){
         self.controller.scoreBoard.hidden = true
         self.controller.highScoreLabel.hidden = true
         self.controller.currentScoreLabel.hidden = true
+        
+        if(GameState.sharedInstance.playedBefore == false){
+            GameState.sharedInstance.playedBefore = true
+            GameState.sharedInstance.saveState()
+            self.controller.scoreBoard.image = UIImage(named: "ScoreBoard")
+        }
         
         if(self.game == false){
             score = 0

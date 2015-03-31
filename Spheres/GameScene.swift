@@ -86,11 +86,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.durationPercentageTemporaryFast = 0
         self.durationPercentageTemporarySlow = 0
         self.timerCount = 0
+        
+        self.setupAudioSession()
         let music = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("background", ofType: "wav")!)
         var error:NSError?
         audioPlayer1 = AVAudioPlayer(contentsOfURL: music, error: &error)
         audioPlayer2 = AVAudioPlayer(contentsOfURL: music, error: &error)
         self.playBackgroundMusic()
+    }
+    func setupAudioSession(){
+            var audioSessionError: NSError?
+            let audioSession = AVAudioSession.sharedInstance()
+            audioSession.setActive(true, error: nil)
+            if audioSession.setCategory(AVAudioSessionCategoryPlayback, withOptions:AVAudioSessionCategoryOptions.MixWithOthers,
+                error: &audioSessionError)
+            {
+                println("Successfully set the audio session")
+            } else {
+                println("Could not set the audio session")
+            }
+            audioSession.setActive(true, error: nil)
     }
     
     func makeBackground() {
