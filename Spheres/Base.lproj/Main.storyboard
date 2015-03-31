@@ -56,13 +56,13 @@
                                     <constraint firstAttribute="width" constant="300" id="Xkg-tF-EmK"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-fl-0gw">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-fl-0gw">
                                 <rect key="frame" x="223" y="252" width="154" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhM-n0-pH7">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhM-n0-pH7">
                                 <rect key="frame" x="205" y="312" width="190" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -105,6 +105,13 @@
                                     <constraint firstAttribute="centerY" secondItem="MU0-NN-UCN" secondAttribute="centerY" id="rFg-U7-U5T"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mSs-5N-lBa">
+                                <rect key="frame" x="280" y="383" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="EwU-co-N3E"/>
+                                    <constraint firstAttribute="width" constant="40" id="bSw-Af-mBP"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.763426760237922" green="0.85270184842379593" blue="0.86247238005050508" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -123,7 +130,9 @@
                             <constraint firstAttribute="centerX" secondItem="bhM-n0-pH7" secondAttribute="centerX" id="jVi-F2-IHz"/>
                             <constraint firstItem="SbW-tu-mLP" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leadingMargin" constant="-16" id="mU1-fS-geg"/>
                             <constraint firstAttribute="centerY" secondItem="ff5-fl-0gw" secondAttribute="centerY" constant="30" id="piU-9D-C7X"/>
+                            <constraint firstItem="mSs-5N-lBa" firstAttribute="top" secondItem="bhM-n0-pH7" secondAttribute="bottom" constant="35" id="uvj-2n-TlU"/>
                             <constraint firstAttribute="centerX" secondItem="ff5-fl-0gw" secondAttribute="centerX" id="xO8-uy-nIQ"/>
+                            <constraint firstAttribute="centerX" secondItem="mSs-5N-lBa" secondAttribute="centerX" id="yVD-Vc-Wtd"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -140,6 +149,7 @@
                         <outlet property="pauseButton" destination="7CB-8C-bc3" id="f96-Nt-Z3a"/>
                         <outlet property="pie" destination="BmW-J0-db0" id="FHw-kr-WNu"/>
                         <outlet property="pieLabel" destination="MU0-NN-UCN" id="mzF-3b-D6N"/>
+                        <outlet property="questionMark" destination="mSs-5N-lBa" id="qps-FO-SKQ"/>
                         <outlet property="scoreBoard" destination="hm6-S2-bla" id="Cwy-Zw-qnH"/>
                         <outlet property="scoreLabel" destination="3cL-l6-r44" id="qwC-Uk-05V"/>
                     </connections>

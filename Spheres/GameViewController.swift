@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var pieLabel: UILabel!
     @IBOutlet weak var musicButton: UIImageView!
     @IBOutlet weak var scoreBoard: UIImageView!
+    @IBOutlet weak var questionMark: UIImageView!
     @IBOutlet weak var explanationBoard: UIImageView!
     @IBOutlet weak var highScoreLabel: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
@@ -43,11 +44,13 @@ class GameViewController: UIViewController {
         scene.scaleMode = .AspectFill
         pauseButton.image = UIImage(named: "Pause")
         musicButton.image = UIImage(named: "Music-on")
+        
         isMusicOn = true
         isPaused = false
         self.musicButton.userInteractionEnabled = true
         self.pauseButton.userInteractionEnabled = true
         self.scoreBoard.userInteractionEnabled = true
+        self.questionMark.userInteractionEnabled = true
         
         let recognizer = UITapGestureRecognizer(target: self, action:Selector("tapMusicButton:"));
         recognizer.numberOfTapsRequired = 1;
@@ -61,10 +64,16 @@ class GameViewController: UIViewController {
         pauseRecognizer2.numberOfTapsRequired = 1;
         scoreBoard.addGestureRecognizer(pauseRecognizer2)
         
+        let pauseRecognizer4 = UITapGestureRecognizer(target: self, action:Selector("tapQuestionMark:"));
+        pauseRecognizer4.numberOfTapsRequired = 1;
+        questionMark.addGestureRecognizer(pauseRecognizer4)
+        
         scoreBoard.image = UIImage(named: "ScoreBoard")
+        questionMark.image = UIImage(named: "Question")
         scoreBoard.hidden = true
         highScoreLabel.hidden = true
         currentScoreLabel.hidden = true
+        questionMark.hidden = true
     
         pie.hidden = true
         pieLabel.hidden = true
@@ -123,6 +132,23 @@ class GameViewController: UIViewController {
         scene.userInteractionEnabled = true
         
     }
+    
+    func tapQuestionMark(AnyObject){
+        
+            explanationBoard.image = UIImage(named: "ExplanationBoard")
+            explanationBoard.hidden = false
+            
+            let pauseRecognizer3 = UITapGestureRecognizer(target: self, action:Selector("tapPauseButton:"));
+            pauseRecognizer3.numberOfTapsRequired = 1;
+            explanationBoard.addGestureRecognizer(pauseRecognizer3)
+
+            highScoreLabel.hidden = true
+            currentScoreLabel.hidden = true
+            questionMark.hidden = true
+            GameState.sharedInstance.playedBefore = false
+        
+    }
+    
     func tapPauseButton(AnyObject){
         if(isPaused == false){
             self.pauseButton.image = UIImage(named: "Play")

@@ -53,6 +53,7 @@ class GameEngine: NSObject{
         self.controller.scoreBoard.hidden = false
         self.controller.highScoreLabel.text = "High Score: " + String(self.highScore)
         self.controller.highScoreLabel.hidden = false
+            self.controller.questionMark.hidden = false
         
         if(game == false){
             var scoreString = "Current Score: "
@@ -72,7 +73,7 @@ class GameEngine: NSObject{
         self.controller.scoreBoard.hidden = true
         self.controller.highScoreLabel.hidden = true
         self.controller.currentScoreLabel.hidden = true
-        
+        self.controller.questionMark.hidden = true
         if(GameState.sharedInstance.playedBefore == false){
             GameState.sharedInstance.playedBefore = true
             GameState.sharedInstance.saveState()
