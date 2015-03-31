@@ -98,7 +98,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var audioSessionError: NSError?
             let audioSession = AVAudioSession.sharedInstance()
             audioSession.setActive(true, error: nil)
-            if audioSession.setCategory(AVAudioSessionCategoryPlayback, withOptions:AVAudioSessionCategoryOptions.MixWithOthers,
+            if audioSession.setCategory(AVAudioSessionCategoryAmbient, withOptions:AVAudioSessionCategoryOptions.MixWithOthers,
                 error: &audioSessionError)
             {
                 println("Successfully set the audio session")
