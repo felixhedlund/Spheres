@@ -34,6 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xPositions: Array<CGFloat>!
     var avatar: Avatar!
     var avatarPositions: Array<CGPoint>!
+    var avatarSizeReference: CGSize!
     var obstaclePositions: Array<CGPoint>!
     var durationPercentage: NSTimeInterval!
     var durationPercentageWithPowerups: NSTimeInterval!
@@ -285,7 +286,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     private func initiateAvatar(){
-        avatar = Avatar(fileName: "Avatar-white", size: CGSize(width: screenSize.maxX/6, height: screenSize.maxX/6), alpha: 0, xScale: 1.1, yScale: 1.1)
+        avatarSizeReference = CGSize(width: screenSize.maxX/6, height: screenSize.maxX/6)
+        avatar = Avatar(fileName: "Avatar-white", size: avatarSizeReference, alpha: 0, xScale: 1.1, yScale: 1.1)
         
         addAvatarPositions()
         addAvatarToScreen()
@@ -398,12 +400,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func tryMoveAvatarRight(){
         
         
-        var position: CGPoint?
+        var avatarPosition = avatar.position.x
         var newPosition: CGPoint?
         for index in 0...3{
-            if(avatar.position == avatarPositions![index] as CGPoint){
-                if(index != 3){
-                    newPosition = avatarPositions![index+1] as CGPoint
+            let xReference = avatarPositions![index].x as CGFloat
+            if(xReference > 0){
+                if(avatarPosition <= xReference*1.3 && avatarPosition >= xReference*0.7){
+                    if(index != 3){
+                        newPosition = avatarPositions![index+1] as CGPoint
+                    }
+                }
+            }else{
+                if(avatarPosition >= xReference*1.3 && avatarPosition <= xReference*0.7){
+                    if(index != 3){
+                        newPosition = avatarPositions![index+1] as CGPoint
+                    }
                 }
             }
         }
@@ -412,13 +423,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     func tryMoveAvatarLeft(){
-        var position: CGPoint?
+        var avatarPosition = avatar.position.x
         var newPosition: CGPoint?
         var index = 0
         var indexReal = 3
         while( index < 3){
-            if(avatar.position == avatarPositions![indexReal] as CGPoint){
-                newPosition = avatarPositions![indexReal-1] as CGPoint
+            let xReference = avatarPositions![indexReal].x as CGFloat
+            if(xReference > 0){
+                if(avatarPosition <= xReference*1.3 && avatarPosition >= xReference*0.7){
+                    newPosition = avatarPositions![indexReal-1] as CGPoint
+                }
+            }else{
+                if(avatarPosition >= xReference*1.3 && avatarPosition <= xReference*0.7){
+                    newPosition = avatarPositions![indexReal-1] as CGPoint
+                }
             }
             indexReal--
             index++
@@ -461,6 +479,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                 newSize = self.controller.gameEngine.halfSize
                             }else{
                                 newSize = self.controller.gameEngine.obstacleSize
+                                
                             }
                             sphere.runAction(SKAction.resizeToWidth(newSize.width, height: newSize.height, duration: 0.5))
                         }
@@ -549,6 +568,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             if(pickedUpSphere){
                 sphere.physicsBody?.categoryBitMask = PhysicsCategory.Empty
+                let sequence = SKAction.sequence([SKAction.resizeToWidth(avatarSizeReference.width*1.2, height: avatarSizeReference.height*1.2, duration: 0.2),
+                SKAction.resizeToWidth(avatarSizeReference.width, height: avatarSizeReference.height, duration: 0.2)])
+                avatar.runAction(sequence)
+                
                 if(self.avatar.hasBlue && self.avatar.hasRed && self.avatar.hasYellow){
                     let music = SKAction.playSoundFileNamed("sphere_all.wav", waitForCompletion: false)
                     self.runAction(music)
@@ -577,6 +600,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.controller.pie.image = UIImage(named: "Pie-green")
                 newTexture = SKTexture(imageNamed: "Avatar-green")
             }else if(avatar.hasYellow == true){
+                if(avatar.hasBlue || avatar.hasRed){
+                    let music = SKAction.playSoundFileNamed("no_more_invincible.wav", waitForCompletion: false)
+                    self.runAction(music)
+                }
                 avatar.hasBlue = false
                 avatar.hasRed = false
                 self.durationPercentageTemporarySlow = 0
@@ -607,6 +634,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.controller.pie.image = UIImage(named: "Pie-green")
                     newTexture = SKTexture(imageNamed: "Avatar-green")
                 }else if(avatar.hasBlue == true){
+                    if(avatar.hasRed || avatar.hasYellow){
+                        let music = SKAction.playSoundFileNamed("no_more_invincible.wav", waitForCompletion: false)
+                        self.runAction(music)
+                    }
                     avatar.hasYellow = false
                     avatar.hasRed = false
                     self.durationPercentageTemporaryFast = 0
@@ -637,6 +668,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.controller.pie.image = UIImage(named: "Pie-orange")
                     newTexture = SKTexture(imageNamed: "Avatar-orange")
                 }else if(avatar.hasRed == true){
+                    if(avatar.hasBlue || avatar.hasYellow){
+                        let music = SKAction.playSoundFileNamed("no_more_invincible.wav", waitForCompletion: false)
+                        self.runAction(music)
+                    }
                     avatar.hasBlue = false
                     avatar.hasYellow = false
                     self.durationPercentageTemporarySlow = 0
@@ -715,7 +750,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.controller.scoreLabel.textColor = UIColor.blackColor()
             setSpeed(1, changeObstacles: changeAllObstacles)
             self.controller.pie.hidden = true
+            
             avatar.texture = SKTexture(imageNamed: "Avatar-white")
+            
+            let sequence = SKAction.sequence([SKAction.resizeToWidth(avatarSizeReference.width*0.8, height: avatarSizeReference.height*0.8, duration: 0.2),
+                SKAction.resizeToWidth(avatarSizeReference.width, height: avatarSizeReference.height, duration: 0.2)])
+            avatar.runAction(sequence)
+            
+            let music = SKAction.playSoundFileNamed("no_more_invincible.wav", waitForCompletion: false)
+            self.runAction(music)
         }
     }
     func didBeginContact(contact: SKPhysicsContact) {
@@ -737,6 +780,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func animateGameOver(completion: () -> ()) {
+        let music = SKAction.playSoundFileNamed("obstacle.wav", waitForCompletion: false)
+        self.runAction(music)
         let action = SKAction.moveBy(CGVector(dx: 0, dy: -size.height), duration: 0.3)
         action.timingMode = .EaseIn
         avatar.runAction(action, completion: completion)

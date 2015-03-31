@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F7BEB33F1AC5562C00E267B6 /* obstacle.wav in Resources */ = {isa = PBXBuildFile; fileRef = F7BEB33E1AC5562C00E267B6 /* obstacle.wav */; };
+		F7BEB3411AC565AD00E267B6 /* no_more_invincible.wav in Resources */ = {isa = PBXBuildFile; fileRef = F7BEB3401AC565AD00E267B6 /* no_more_invincible.wav */; };
 		F7EDB62A1AC4C9A5008F59A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EDB6291AC4C9A5008F59A3 /* AppDelegate.swift */; };
 		F7EDB62C1AC4C9A5008F59A3 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F7EDB62B1AC4C9A5008F59A3 /* GameScene.sks */; };
 		F7EDB6331AC4C9A5008F59A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7EDB6311AC4C9A5008F59A3 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F7BEB33E1AC5562C00E267B6 /* obstacle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = obstacle.wav; path = Sounds/obstacle.wav; sourceTree = SOURCE_ROOT; };
+		F7BEB3401AC565AD00E267B6 /* no_more_invincible.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = no_more_invincible.wav; path = Sounds/no_more_invincible.wav; sourceTree = SOURCE_ROOT; };
 		F7EDB6241AC4C9A5008F59A3 /* Spheres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spheres.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7EDB6281AC4C9A5008F59A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7EDB6291AC4C9A5008F59A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				F7EDB6691AC4CE71008F59A3 /* background.wav */,
+				F7BEB33E1AC5562C00E267B6 /* obstacle.wav */,
+				F7BEB3401AC565AD00E267B6 /* no_more_invincible.wav */,
 				F7EDB66A1AC4CE71008F59A3 /* sphere_all.wav */,
 				F7EDB66B1AC4CE71008F59A3 /* sphere.wav */,
 			);
@@ -256,11 +262,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7BEB3411AC565AD00E267B6 /* no_more_invincible.wav in Resources */,
 				F7EDB6381AC4C9A5008F59A3 /* LaunchScreen.xib in Resources */,
 				F7EDB66C1AC4CE71008F59A3 /* background.wav in Resources */,
 				F7EDB6351AC4C9A5008F59A3 /* Images.xcassets in Resources */,
 				F7EDB66D1AC4CE71008F59A3 /* sphere_all.wav in Resources */,
 				F7EDB62C1AC4C9A5008F59A3 /* GameScene.sks in Resources */,
+				F7BEB33F1AC5562C00E267B6 /* obstacle.wav in Resources */,
 				F7EDB66E1AC4CE71008F59A3 /* sphere.wav in Resources */,
 				F7EDB6331AC4C9A5008F59A3 /* Main.storyboard in Resources */,
 			);
@@ -481,6 +489,7 @@
 				F7EDB6491AC4C9A5008F59A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F7EDB64A1AC4C9A5008F59A3 /* Build configuration list for PBXNativeTarget "SpheresTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +498,7 @@
 				F7EDB64C1AC4C9A5008F59A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

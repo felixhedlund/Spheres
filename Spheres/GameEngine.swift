@@ -33,7 +33,7 @@ class GameEngine: NSObject{
         
         super.init()
         self.initiateObstacleReference()
-        for index in 0...50{
+        for index in 0...100{
             generateSpheresLevel3()
         }
     }
@@ -73,7 +73,7 @@ class GameEngine: NSObject{
             score = 0
             controller.scoreLabel.text = NSString(format: "%ld", score)
             spheresList = Array<Array<Int>>()
-            for index in 0...50{
+            for index in 0...100{
                 generateSpheresLevel3()
             }
             self.highScore = GameState.sharedInstance.highScore
