@@ -461,7 +461,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     func moveAvatar(position: CGPoint){
-        let Duration: NSTimeInterval = 0.15 * durationPercentageWithPowerups
+        let Duration: NSTimeInterval = 0.20
+            * durationPercentageWithPowerups
         
         let moveA = SKAction.moveTo(position, duration: Duration)
         moveA.timingMode = .EaseOut
@@ -583,8 +584,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             if(pickedUpSphere){
                 sphere.physicsBody?.categoryBitMask = PhysicsCategory.Empty
-                let sequence = SKAction.sequence([SKAction.resizeToWidth(avatarSizeReference.width*1.2, height: avatarSizeReference.height*1.2, duration: 0.2),
-                SKAction.resizeToWidth(avatarSizeReference.width, height: avatarSizeReference.height, duration: 0.2)])
+                let sequence = SKAction.sequence([SKAction.resizeToWidth(avatarSizeReference.width*1.3, height: avatarSizeReference.height*1.3, duration: 0.15),
+                SKAction.resizeToWidth(avatarSizeReference.width, height: avatarSizeReference.height, duration: 0.15),
+                    SKAction.resizeToWidth(avatarSizeReference.width*1.15, height: avatarSizeReference.height*1.15, duration: 0.15),
+                    SKAction.resizeToWidth(avatarSizeReference.width, height: avatarSizeReference.height, duration: 0.15)])
                 avatar.runAction(sequence)
                 
                 if(self.avatar.hasBlue && self.avatar.hasRed && self.avatar.hasYellow){
@@ -768,8 +771,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             avatar.texture = SKTexture(imageNamed: "Avatar-white")
             
-            let sequence = SKAction.sequence([SKAction.resizeToWidth(avatarSizeReference.width*0.8, height: avatarSizeReference.height*0.8, duration: 0.2),
-                SKAction.resizeToWidth(avatarSizeReference.width, height: avatarSizeReference.height, duration: 0.2)])
+            let sequence = SKAction.sequence([SKAction.resizeToWidth(avatarSizeReference.width*0.7, height: avatarSizeReference.height*0.7, duration: 0.15),
+                SKAction.resizeToWidth(avatarSizeReference.width, height: avatarSizeReference.height, duration: 0.15),
+                SKAction.resizeToWidth(avatarSizeReference.width*0.85, height: avatarSizeReference.height*0.85, duration: 0.15),
+                SKAction.resizeToWidth(avatarSizeReference.width, height: avatarSizeReference.height, duration: 0.15)])
             avatar.runAction(sequence)
             
             let music = SKAction.playSoundFileNamed("no_more_invincible.wav", waitForCompletion: false)
