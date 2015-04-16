@@ -53,6 +53,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var pieTimerSeconds: NSTimer!
     var calculatedContainerNode: ContainerNode!
     var invincibleMode: Bool!
+//    var start:CGPoint?
+    var startTime:NSTimeInterval?
     
     init(view: SKView, size: CGSize){
         obstacleTexture = SKTexture(imageNamed: "Sphere-black")
@@ -188,6 +190,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let yPoint = point.y * 2
         self.moveDuration = calculateDurationFromPoints(yPoint, pos: obstaclePositions![0].y)
         self.timerCount = 0
+        startTime = nil
+        self.userInteractionEnabled = true
+        
     }
     func playBackgroundMusic(){
         let music = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("background", ofType: "wav")!)
@@ -399,20 +404,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        println("Gesture is detected")
         if(!self.controller.isPaused){
             if let swipeGesture = gesture as? UISwipeGestureRecognizer {
-                
+                let elapsedTime = CACurrentMediaTime() - startTime!
+                if(elapsedTime > 0.3){
+                    //do nothing
+                }else{
                 switch swipeGesture.direction {
                 case UISwipeGestureRecognizerDirection.Right:
-                    tryMoveAvatarRight();
+                    tryMoveAvatarRight(elapsedTime);
                 case UISwipeGestureRecognizerDirection.Left:
-                    tryMoveAvatarLeft();
+                    tryMoveAvatarLeft(elapsedTime);
                 default:
                     break
-                }
+                    }}
             }}
     }
-    func tryMoveAvatarRight(){
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        println("Touches began")
+        if(touches.count > 1){
+            return;
+        }
+        if let touch:UITouch = touches.first as? UITouch{
+//            let location:CGPoint = touch.locationInView(self.view!)
+//            start = location
+            startTime = CACurrentMediaTime()
+            //println(startTime)
+        }
+    }
+    
+    
+    
+    func tryMoveAvatarRight(elapsedTime: NSTimeInterval){
         
         
         var avatarPosition = avatar.position.x
@@ -434,10 +459,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         if(newPosition != nil){
-            moveAvatar(newPosition!)
+            moveAvatar(newPosition!, elapsedTime: elapsedTime)
         }
     }
-    func tryMoveAvatarLeft(){
+    func tryMoveAvatarLeft(elapsedTime: NSTimeInterval){
         var avatarPosition = avatar.position.x
         var newPosition: CGPoint?
         var index = 0
@@ -457,14 +482,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             index++
         }
         if(newPosition != nil){
-            moveAvatar(newPosition!)
+            moveAvatar(newPosition!, elapsedTime: elapsedTime)
         }
     }
-    func moveAvatar(position: CGPoint){
-        let Duration: NSTimeInterval = 0.20
-            * durationPercentageWithPowerups
+    func moveAvatar(position: CGPoint, elapsedTime: NSTimeInterval){
+//        let Duration: NSTimeInterval = 0.20
+//            * durationPercentageWithPowerups
         
-        let moveA = SKAction.moveTo(position, duration: Duration)
+        let moveA = SKAction.moveTo(position, duration: elapsedTime * 1.6)
         moveA.timingMode = .EaseOut
         avatar.runAction(moveA)
     }
