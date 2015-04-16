@@ -37,8 +37,8 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cL-l6-r44">
-                                <rect key="frame" x="556" y="34" width="28" height="60"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <rect key="frame" x="553" y="30" width="31" height="65"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="50"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -57,14 +57,14 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-fl-0gw">
-                                <rect key="frame" x="223" y="252" width="154" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <rect key="frame" x="220" y="211" width="160" height="39"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhM-n0-pH7">
-                                <rect key="frame" x="205" y="312" width="190" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <rect key="frame" x="201" y="301" width="198" height="39"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -89,8 +89,8 @@
                                         </variation>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MU0-NN-UCN">
-                                        <rect key="frame" x="15" y="14" width="33" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <rect key="frame" x="14" y="12" width="36" height="39"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -106,33 +106,49 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mSs-5N-lBa">
-                                <rect key="frame" x="280" y="383" width="40" height="40"/>
+                                <rect key="frame" x="280" y="385" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="EwU-co-N3E"/>
                                     <constraint firstAttribute="width" constant="40" id="bSw-Af-mBP"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dB-x1-eCt">
+                                <rect key="frame" x="281" y="254" width="38" height="39"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gxz-my-nGi">
+                                <rect key="frame" x="282" y="344" width="36" height="39"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.763426760237922" green="0.85270184842379593" blue="0.86247238005050508" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="hm6-S2-bla" secondAttribute="centerX" id="40J-iw-hOK"/>
                             <constraint firstItem="b3d-qh-BLL" firstAttribute="top" secondItem="leW-SZ-uKl" secondAttribute="bottom" constant="10" id="65s-lW-eRH"/>
+                            <constraint firstAttribute="centerX" secondItem="Gxz-my-nGi" secondAttribute="centerX" id="7BO-Zl-ewL"/>
                             <constraint firstAttribute="centerY" secondItem="hm6-S2-bla" secondAttribute="centerY" id="Bdg-Pg-maR"/>
                             <constraint firstItem="7CB-8C-bc3" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leadingMargin" constant="-8" id="DF7-96-tHm"/>
+                            <constraint firstItem="4dB-x1-eCt" firstAttribute="top" secondItem="ff5-fl-0gw" secondAttribute="bottom" constant="4" id="M9n-O0-H1S"/>
                             <constraint firstItem="7CB-8C-bc3" firstAttribute="top" secondItem="PCf-gQ-wO7" secondAttribute="bottom" constant="20" id="Maw-bM-zO8"/>
                             <constraint firstItem="b3d-qh-BLL" firstAttribute="top" secondItem="SbW-tu-mLP" secondAttribute="bottom" id="NPE-kW-Thy"/>
-                            <constraint firstAttribute="centerY" secondItem="bhM-n0-pH7" secondAttribute="centerY" constant="-30" id="SQt-c5-i5C"/>
+                            <constraint firstAttribute="centerY" secondItem="bhM-n0-pH7" secondAttribute="centerY" constant="-20" id="SQt-c5-i5C"/>
                             <constraint firstItem="leW-SZ-uKl" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leadingMargin" constant="-8" id="VCp-Q2-t5n"/>
-                            <constraint firstItem="3cL-l6-r44" firstAttribute="top" secondItem="PCf-gQ-wO7" secondAttribute="bottom" constant="14" id="XcN-pF-QWQ"/>
+                            <constraint firstItem="3cL-l6-r44" firstAttribute="top" secondItem="PCf-gQ-wO7" secondAttribute="bottom" constant="10" id="XcN-pF-QWQ"/>
                             <constraint firstItem="leW-SZ-uKl" firstAttribute="trailing" secondItem="bdc-N1-crn" secondAttribute="trailingMargin" constant="8" id="car-i9-hxJ"/>
                             <constraint firstItem="3cL-l6-r44" firstAttribute="trailing" secondItem="bdc-N1-crn" secondAttribute="trailingMargin" id="gb8-M3-IBT"/>
                             <constraint firstItem="7CB-8C-bc3" firstAttribute="top" secondItem="PCf-gQ-wO7" secondAttribute="bottom" constant="18" id="hbx-HP-NvO"/>
                             <constraint firstAttribute="centerX" secondItem="bhM-n0-pH7" secondAttribute="centerX" id="jVi-F2-IHz"/>
                             <constraint firstItem="SbW-tu-mLP" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leadingMargin" constant="-16" id="mU1-fS-geg"/>
-                            <constraint firstAttribute="centerY" secondItem="ff5-fl-0gw" secondAttribute="centerY" constant="30" id="piU-9D-C7X"/>
-                            <constraint firstItem="mSs-5N-lBa" firstAttribute="top" secondItem="bhM-n0-pH7" secondAttribute="bottom" constant="35" id="uvj-2n-TlU"/>
+                            <constraint firstAttribute="centerY" secondItem="ff5-fl-0gw" secondAttribute="centerY" constant="70" id="piU-9D-C7X"/>
+                            <constraint firstAttribute="centerX" secondItem="4dB-x1-eCt" secondAttribute="centerX" id="qcT-Ce-vQY"/>
+                            <constraint firstItem="mSs-5N-lBa" firstAttribute="top" secondItem="bhM-n0-pH7" secondAttribute="bottom" constant="45" id="uvj-2n-TlU"/>
                             <constraint firstAttribute="centerX" secondItem="ff5-fl-0gw" secondAttribute="centerX" id="xO8-uy-nIQ"/>
                             <constraint firstAttribute="centerX" secondItem="mSs-5N-lBa" secondAttribute="centerX" id="yVD-Vc-Wtd"/>
+                            <constraint firstItem="Gxz-my-nGi" firstAttribute="top" secondItem="bhM-n0-pH7" secondAttribute="bottom" constant="4" id="zT4-eA-fna"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -143,8 +159,10 @@
                     </view>
                     <connections>
                         <outlet property="currentScoreLabel" destination="bhM-n0-pH7" id="KOj-oU-swf"/>
+                        <outlet property="currentScoreLabelNumber" destination="Gxz-my-nGi" id="CPs-jt-w9N"/>
                         <outlet property="explanationBoard" destination="hm6-S2-bla" id="0nn-uF-zyP"/>
                         <outlet property="highScoreLabel" destination="ff5-fl-0gw" id="JJA-LT-dDP"/>
+                        <outlet property="highScoreLabelNumber" destination="4dB-x1-eCt" id="SU4-HN-zns"/>
                         <outlet property="musicButton" destination="leW-SZ-uKl" id="O3M-UI-heZ"/>
                         <outlet property="pauseButton" destination="7CB-8C-bc3" id="f96-Nt-Z3a"/>
                         <outlet property="pie" destination="BmW-J0-db0" id="FHw-kr-WNu"/>
@@ -156,6 +174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btX-cZ-eVz" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="487" y="422"/>
         </scene>
     </scenes>
 </document>

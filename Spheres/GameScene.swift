@@ -482,12 +482,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let count = allActiveNodes.count
             
             for index in 0...count-1{
-                let node = allActiveNodes[index] as ContainerNode
+                let node = allActiveNodes[index] as! ContainerNode
                 node.removeAllActions()
                 if(changeObstacles){
                     let row = node.children
                     for rowIndex in 0...row.count-1{
-                        let sphere = row[rowIndex] as Sphere
+                        let sphere = row[rowIndex] as! Sphere
                         if(sphere.isObstacle){
                             sphere.texture = self.obstacleTexture
                             var newSize: CGSize!
@@ -512,8 +512,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let allActiveNodes = self.spheresLayer.children
             let count = allActiveNodes.count
             
-            var node2 = allActiveNodes[count-2] as ContainerNode
-            var node = allActiveNodes[count-1] as ContainerNode
+            var node2 = allActiveNodes[count-2] as! ContainerNode
+            var node = allActiveNodes[count-1] as! ContainerNode
             
             if(node.hidden == true){
                 node = node2
@@ -537,7 +537,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let count = allActiveNodes.count
             
             for index in 0...count-1{
-                let node = allActiveNodes[index] as ContainerNode
+                let node = allActiveNodes[index] as! ContainerNode
                 node.removeAllActions()
             }
         }
@@ -550,7 +550,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func sphereDidCollideWithAvatar(sphere:SKSpriteNode, avatar:SKSpriteNode) {
         if(avatar.physicsBody!.categoryBitMask == PhysicsCategory.Avatar){
             if(sphere.physicsBody!.categoryBitMask != PhysicsCategory.Barrier){
-                let containerNode = sphere.parent as ContainerNode
+                let containerNode = sphere.parent as! ContainerNode
                 if(containerNode.pointCollected == false){
                     containerNode.pointCollected = true
                     self.controller.gameEngine.increaseScore()
@@ -719,17 +719,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
             self.timerCount = 10
             self.controller.pieLabel.hidden = false
-            self.controller.pieLabel.text = NSString(format: "%ld", Int(self.timerCount))
+            self.controller.pieLabel.text = String(Int(self.timerCount))
             self.avatar.texture = newTexture
             avatar.timerID++
             self.pieTimerSeconds = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("pieTimer:"), userInfo: avatar.timerID, repeats: true)
             self.pieTimer = NSTimer.scheduledTimerWithTimeInterval(self.timerCount, target: self, selector: Selector("changeAvatarToInitialState:"), userInfo: avatar.timerID, repeats: false)
     }
     func pieTimer(timer: NSTimer){
-        let timerID = timer.userInfo as Int
+        let timerID = timer.userInfo as! Int
         if((timerID == avatar.timerID) && self.timerCount > 0){
             self.timerCount = self.timerCount-1
-            self.controller.pieLabel.text = NSString(format: "%ld", Int(self.timerCount))
+            self.controller.pieLabel.text = String(Int(self.timerCount))
         }else{
             timer.invalidate()
         }
@@ -751,7 +751,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func changeAvatarToInitialState(timer: NSTimer){
-        let timerID = timer.userInfo as Int
+        let timerID = timer.userInfo as! Int
         if(timerID == avatar.timerID){
             var changeAllObstacles = false
             if(avatar.hasRed == true && avatar.hasBlue == true && avatar.hasYellow == true){
@@ -771,9 +771,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             avatar.texture = SKTexture(imageNamed: "Avatar-white")
             
-            let sequence = SKAction.sequence([SKAction.resizeToWidth(avatarSizeReference.width*0.7, height: avatarSizeReference.height*0.7, duration: 0.15),
+            let sequence = SKAction.sequence([SKAction.resizeToWidth(avatarSizeReference.width*0.6, height: avatarSizeReference.height*0.2, duration: 0.15),
                 SKAction.resizeToWidth(avatarSizeReference.width, height: avatarSizeReference.height, duration: 0.15),
-                SKAction.resizeToWidth(avatarSizeReference.width*0.85, height: avatarSizeReference.height*0.85, duration: 0.15),
+                SKAction.resizeToWidth(avatarSizeReference.width*0.55, height: avatarSizeReference.height*0.85, duration: 0.15),
                 SKAction.resizeToWidth(avatarSizeReference.width, height: avatarSizeReference.height, duration: 0.15)])
             avatar.runAction(sequence)
             
@@ -795,7 +795,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         if(firstBody.node?.parent != nil && secondBody.node?.parent != nil){
-            sphereDidCollideWithAvatar(firstBody.node as SKSpriteNode, avatar: secondBody.node as SKSpriteNode)
+            sphereDidCollideWithAvatar(firstBody.node as! SKSpriteNode, avatar: secondBody.node as! SKSpriteNode)
         }
     }
     

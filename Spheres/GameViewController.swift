@@ -20,7 +20,9 @@ class GameViewController: UIViewController {
     @IBOutlet weak var questionMark: UIImageView!
     @IBOutlet weak var explanationBoard: UIImageView!
     @IBOutlet weak var highScoreLabel: UILabel!
+    @IBOutlet weak var highScoreLabelNumber: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
+    @IBOutlet weak var currentScoreLabelNumber: UILabel!
     var tapGestureRecognizer: UITapGestureRecognizer!
     var gameEngine: GameEngine!
     var scene: GameScene!
@@ -29,7 +31,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let skView = view as SKView
+        let skView = view as! SKView
         scene = GameScene(view: skView, size: skView.bounds.size)
         scene.controller = self
         // Configure the view.
@@ -72,7 +74,9 @@ class GameViewController: UIViewController {
         questionMark.image = UIImage(named: "Question")
         scoreBoard.hidden = true
         highScoreLabel.hidden = true
+        highScoreLabelNumber.hidden = true
         currentScoreLabel.hidden = true
+        currentScoreLabelNumber.hidden = true
         questionMark.hidden = true
     
         pie.hidden = true
@@ -143,7 +147,9 @@ class GameViewController: UIViewController {
             explanationBoard.addGestureRecognizer(pauseRecognizer3)
 
             highScoreLabel.hidden = true
+            highScoreLabelNumber.hidden = true
             currentScoreLabel.hidden = true
+            currentScoreLabelNumber.hidden = true
             questionMark.hidden = true
             GameState.sharedInstance.playedBefore = false
         

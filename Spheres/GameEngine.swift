@@ -51,8 +51,10 @@ class GameEngine: NSObject{
         if(GameState.sharedInstance.playedBefore == true){
         
         self.controller.scoreBoard.hidden = false
-        self.controller.highScoreLabel.text = "High Score: " + String(self.highScore)
+        self.controller.highScoreLabel.text = "High Score: "
+         self.controller.highScoreLabelNumber.text = String(self.highScore)
         self.controller.highScoreLabel.hidden = false
+            self.controller.highScoreLabelNumber.hidden = false
             self.controller.questionMark.hidden = false
         
         if(game == false){
@@ -62,17 +64,22 @@ class GameEngine: NSObject{
                 GameState.sharedInstance.highScore = score
                 GameState.sharedInstance.saveState()
             }
-            self.controller.currentScoreLabel.text = scoreString + String(score)
+            self.controller.currentScoreLabel.text = scoreString
+            self.controller.currentScoreLabelNumber.text = String(score)
         }else{
-            self.controller.currentScoreLabel.text = "Current Score: " + String(score)
+            self.controller.currentScoreLabel.text = "Current Score:"
+            self.controller.currentScoreLabelNumber.text = String(score)
         }
         self.controller.currentScoreLabel.hidden = false
+            self.controller.currentScoreLabelNumber.hidden = false
         }
     }
     func playGame(){
         self.controller.scoreBoard.hidden = true
         self.controller.highScoreLabel.hidden = true
+        self.controller.highScoreLabelNumber.hidden = true
         self.controller.currentScoreLabel.hidden = true
+        self.controller.currentScoreLabelNumber.hidden = true
         self.controller.questionMark.hidden = true
         if(GameState.sharedInstance.playedBefore == false){
             GameState.sharedInstance.playedBefore = true
@@ -82,7 +89,7 @@ class GameEngine: NSObject{
         
         if(self.game == false){
             score = 0
-            controller.scoreLabel.text = NSString(format: "%ld", score)
+            controller.scoreLabel.text = String(score)
             spheresList = Array<Array<Int>>()
             for index in 0...100{
                 generateSpheresLevel3()
@@ -137,7 +144,20 @@ class GameEngine: NSObject{
             self.lastContainerNode = self.scene.addSpheres(self.getSphereFromNumber(spheres[0]), middleLeftSphere: self.getSphereFromNumber(spheres[1]), middleRightSphere: self.getSphereFromNumber(spheres[2]), rightSphere: self.getSphereFromNumber(spheres[3]))
         }
         
-        gameTimer = NSTimer.scheduledTimerWithTimeInterval(self.scene.moveDuration/2, target: self, selector: Selector("addMoreSpheres"), userInfo: nil, repeats: false)
+        var duration: NSTimeInterval!
+        switch(self.scene.screenHeight){
+            case 480.0:
+                duration = (self.scene.moveDuration/2)*1.28
+            case 568.0:
+                duration = (self.scene.moveDuration/2)*1.15
+            case 960:0
+                duration = (self.scene.moveDuration/2)*0.56
+            case 1104.0:
+                duration = (self.scene.moveDuration/2)*0.35
+            default:
+                duration = self.scene.moveDuration/2
+        }
+        gameTimer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: Selector("addMoreSpheres"), userInfo: nil, repeats: false)
     }
     
     
@@ -260,7 +280,7 @@ class GameEngine: NSObject{
             score++
         }
         let scoreCopy = score
-        controller.scoreLabel.text = NSString(format: "%ld", scoreCopy)
+        controller.scoreLabel.text = String(format: "%ld", scoreCopy)
         let pointLevelList = [5,10,20,40,60,80,100,120,200,300,400,500]
         
         for point: Int in pointLevelList{
