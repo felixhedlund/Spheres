@@ -70,9 +70,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         spheresLayer = SKNode()
         self.addChild(spheresLayer)
-        durationPercentage = 0.75
+        durationPercentage = 0.53
         durationPercentageWithPowerups = durationPercentage
-        durationIncreasage = 0.15
+        durationIncreasage = 0.13
         initiateAvatar()
         initiateObstaclePositions()
         var swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
@@ -180,9 +180,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.controller.scoreLabel.textColor = UIColor.blackColor()
         self.controller.pieLabel.hidden = true
         initiateAvatar()
-        durationPercentage = 0.75
+        durationPercentage = 0.55
         durationPercentageWithPowerups = durationPercentage
-        durationIncreasage = 0.15
+        durationIncreasage = 0.13
         self.durationPercentageTemporaryFast = 0
         self.durationPercentageTemporarySlow = 0
         
@@ -404,7 +404,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
-        println("Gesture is detected")
         if(!self.controller.isPaused){
             if let swipeGesture = gesture as? UISwipeGestureRecognizer {
                 let elapsedTime = CACurrentMediaTime() - startTime!
@@ -423,7 +422,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        println("Touches began")
         if(touches.count > 1){
             return;
         }
@@ -489,7 +487,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        let Duration: NSTimeInterval = 0.20
 //            * durationPercentageWithPowerups
         
-        let moveA = SKAction.moveTo(position, duration: elapsedTime * 1.6)
+        let moveA = SKAction.moveTo(position, duration: elapsedTime * 1.45)
         moveA.timingMode = .EaseOut
         avatar.runAction(moveA)
     }

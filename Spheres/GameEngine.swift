@@ -286,7 +286,7 @@ class GameEngine: NSObject{
         for point: Int in pointLevelList{
             if((scoreCopy == point) || (self.scene.avatar.hasYellow && (scoreCopy == point + 1))){
                 scene.setSpeed(1-self.scene.durationIncreasage, changeObstacles: false)
-                self.scene.durationIncreasage =  self.scene.durationIncreasage - self.scene.durationIncreasage/15
+                self.scene.durationIncreasage =  self.scene.durationIncreasage - self.scene.durationIncreasage/13
             }
         }
     }
