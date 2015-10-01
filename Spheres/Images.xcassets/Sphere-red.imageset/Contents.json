@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "Sphere-red.png"
+      "filename" : "Sphere-red.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

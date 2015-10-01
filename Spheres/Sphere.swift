@@ -16,6 +16,7 @@ class Sphere: SKSpriteNode{
         self.isObstacle = isObstacle
         let texture = SKTexture(imageNamed: fileName)
         super.init(texture: texture, color: UIColor.clearColor(), size: size)
+        //super.init(texture: texture, color: UIColor.clearColor(), size: size)
         self.name = fileName
         self.size = size
         self.alpha = alpha
@@ -24,6 +25,7 @@ class Sphere: SKSpriteNode{
         if(fileName == ""){
             self.texture = nil
         }
+        self.zPosition = 5
     }
     
     init(fileName: String, size: CGSize, isObstacle: Bool, alpha: CGFloat, xScale: CGFloat, yScale: CGFloat, texture: SKTexture) {
@@ -38,6 +40,8 @@ class Sphere: SKSpriteNode{
         if(fileName == ""){
             self.texture = nil
         }
+        
+        self.zPosition = 5
     }
     
     required init?(coder aDecoder: NSCoder) {

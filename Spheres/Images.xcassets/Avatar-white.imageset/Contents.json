@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "Avatar-white.png"
+      "filename" : "Avatar-white.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

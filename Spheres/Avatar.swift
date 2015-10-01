@@ -21,7 +21,7 @@ class Avatar: SKSpriteNode{
         self.hasRed = false
         self.timerID = 0
         let texture = SKTexture(imageNamed: fileName)
-        super.init(texture: texture, color: UIColor.clearColor(), size: size)
+        super.init(texture: texture, color: UIColor.whiteColor(), size: size)
         self.name = fileName
         self.size = size
         self.alpha = alpha
@@ -30,6 +30,7 @@ class Avatar: SKSpriteNode{
         if(fileName == ""){
             self.texture = nil
         }
+        self.zPosition = 5
     }
     
     required init?(coder aDecoder: NSCoder) {
