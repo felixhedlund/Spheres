@@ -33,7 +33,7 @@ class GameEngine: NSObject{
         
         super.init()
         self.initiateObstacleReference()
-        for index in 0...100{
+        for _ in 0...100{
             generateSpheresLevel3()
         }
     }
@@ -91,7 +91,7 @@ class GameEngine: NSObject{
             score = 0
             controller.scoreLabel.text = String(score)
             spheresList = Array<Array<Int>>()
-            for index in 0...100{
+            for _ in 0...100{
                 generateSpheresLevel3()
             }
             self.highScore = GameState.sharedInstance.highScore
@@ -252,7 +252,7 @@ class GameEngine: NSObject{
         }else{
             //let pos = Int(arc4random_uniform(UInt32(line.count)))
             var placedTemp = false
-            var positions = lineTemp.keys.array
+            var positions = Array(lineTemp.keys)
             var startPositionTemp = startPosition
             
             let rand = Int(arc4random_uniform(UInt32(positions.count)))

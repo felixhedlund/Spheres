@@ -75,11 +75,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         durationIncreasage = 0.13
         initiateAvatar()
         initiateObstaclePositions()
-        var swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         view.addGestureRecognizer(swipeRight)
         
-        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         view.addGestureRecognizer(swipeLeft)
         let point = convertPoint(avatar.position, fromNode: avatar)
@@ -91,28 +91,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.setupAudioSession()
         let music = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("background", ofType: "wav")!)
-        var error:NSError?
-        audioPlayer1 = AVAudioPlayer(contentsOfURL: music, error: &error)
-        audioPlayer2 = AVAudioPlayer(contentsOfURL: music, error: &error)
+        do{
+        audioPlayer1 = try AVAudioPlayer(contentsOfURL: music, fileTypeHint: "wav")
+        audioPlayer2 = try AVAudioPlayer(contentsOfURL: music, fileTypeHint: "wav")
+        }catch{
+            print("Could not play music")
+        }
         self.playBackgroundMusic()
     }
     func setupAudioSession(){
-            var audioSessionError: NSError?
-            let audioSession = AVAudioSession.sharedInstance()
-            audioSession.setActive(true, error: nil)
-            if audioSession.setCategory(AVAudioSessionCategoryAmbient, withOptions:AVAudioSessionCategoryOptions.MixWithOthers,
-                error: &audioSessionError)
-            {
-                println("Successfully set the audio session")
-            } else {
-                println("Could not set the audio session")
-            }
-            audioSession.setActive(true, error: nil)
+        let audioSession = AVAudioSession.sharedInstance()
+        do{
+            try audioSession.setActive(true)
+        }catch{
+            print("Could not set audiosession active")
+        }
+        do{
+        try audioSession.setCategory(AVAudioSessionCategoryAmbient, withOptions:AVAudioSessionCategoryOptions.MixWithOthers)
+        }catch{
+            print("Could not set the audio session")
+        }
+        do{
+            try audioSession.setActive(true)
+        }catch{
+            print("Could not set audiosession active")
+        }
     }
     
     func makeBackground() {
         
-        var backgroundTexture = SKTexture(imageNamed: "Background2")
+        let backgroundTexture = SKTexture(imageNamed: "Background2")
         
         for var i:CGFloat = 0; i<3; i++ {
             
@@ -131,7 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             //move background top to bottom; replace
             var shiftBackground = SKAction.moveToY(destination, duration: duration)
-            var replaceBackground = SKAction.moveToY(CGRectGetMidY(self.frame) + screenHeight*2, duration: 0)
+            let replaceBackground = SKAction.moveToY(CGRectGetMidY(self.frame) + screenHeight*2, duration: 0)
             
             var movingAndReplacingBackground: SKAction!
             background.texture = backgroundTexture
@@ -166,8 +174,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         duration = (duration*NSTimeInterval(distance))
         background.texture = backgroundTexture
         //move background top to bottom; replace
-        var shiftBackground = SKAction.moveToY(destination, duration: duration)
-        var replaceBackground = SKAction.moveToY(CGRectGetMidY(self.frame) + screenHeight, duration: 0)
+        let shiftBackground = SKAction.moveToY(destination, duration: duration)
+        let replaceBackground = SKAction.moveToY(CGRectGetMidY(self.frame) + screenHeight, duration: 0)
         
         let movingAndReplacingBackground = SKAction.repeatActionForever(SKAction.sequence([shiftBackground,replaceBackground]))
         background.runAction(movingAndReplacingBackground)
@@ -196,13 +204,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     func playBackgroundMusic(){
         let music = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("background", ofType: "wav")!)
-        var error:NSError?
         if(audioPlayer1.playing){
-            audioPlayer2 = AVAudioPlayer(contentsOfURL: music, error: &error)
+            do{
+                try audioPlayer2 = AVAudioPlayer(contentsOfURL: music)
+            }catch{
+                print("Could not play music")
+            }
             audioPlayer2.prepareToPlay()
             audioPlayer2.play()
         }else{
-            audioPlayer1 = AVAudioPlayer(contentsOfURL: music, error: &error)
+            do{
+                try audioPlayer1 = AVAudioPlayer(contentsOfURL: music)
+            }catch{
+                print("Could not play music")
+            }
             audioPlayer1.prepareToPlay()
             audioPlayer1.play()
         }
@@ -274,7 +289,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             case "":
                 sphere.physicsBody?.categoryBitMask = PhysicsCategory.Empty
             default:
-                println("tuple does not have a name")
+                print("tuple does not have a name")
             }
             
             sphere.physicsBody?.contactTestBitMask = PhysicsCategory.Avatar // 4
@@ -297,7 +312,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let yPoint = point.y * 2
         
-        let distance = fabs(yPoint - node.position.y)
         self.moveDuration = calculateDurationFromPoints(yPoint, pos: node.position.y)
         let moveDurationCopy = self.moveDuration
         
@@ -345,10 +359,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     private func drawLines(){
-        var line1 = SKShapeNode()
-        var path1 = CGPathCreateMutable()
+        let line1 = SKShapeNode()
+        let path1 = CGPathCreateMutable()
         
-        var xPoint1 = (screenSize.maxX/4)
+        let xPoint1 = (screenSize.maxX/4)
         CGPathMoveToPoint(path1, nil, xPoint1, -screenSize.maxY)
         CGPathAddLineToPoint(path1, nil, xPoint1,screenSize.maxY)
         
@@ -357,9 +371,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         line1.lineWidth = 3.0
         self.addChild(line1)
         
-        var line2 = SKShapeNode()
-        var path2 = CGPathCreateMutable()
-        var xPoint2 = (-screenSize.maxX/4)
+        let line2 = SKShapeNode()
+        let path2 = CGPathCreateMutable()
+        let xPoint2 = (-screenSize.maxX/4)
         CGPathMoveToPoint(path2, nil, xPoint2, -screenSize.maxY)
         CGPathAddLineToPoint(path2, nil, xPoint2,screenSize.maxY)
         
@@ -368,9 +382,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         line2.lineWidth = 3.0
         self.addChild(line2)
         
-        var line3 = SKShapeNode()
-        var path3 = CGPathCreateMutable()
-        var xPoint3 = (screenSize.minX)
+        let line3 = SKShapeNode()
+        let path3 = CGPathCreateMutable()
+        let xPoint3 = (screenSize.minX)
         CGPathMoveToPoint(path3, nil, xPoint3, -screenSize.maxY)
         CGPathAddLineToPoint(path3, nil, xPoint3,screenSize.maxY)
         
@@ -421,11 +435,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }}
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if(touches.count > 1){
             return;
         }
-        if let touch:UITouch = touches.first as? UITouch{
+        if let _:UITouch = touches.first{
 //            let location:CGPoint = touch.locationInView(self.view!)
 //            start = location
             startTime = CACurrentMediaTime()
@@ -438,7 +452,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func tryMoveAvatarRight(elapsedTime: NSTimeInterval){
         
         
-        var avatarPosition = avatar.position.x
+        let avatarPosition = avatar.position.x
         var newPosition: CGPoint?
         for index in 0...3{
             let xReference = avatarPositions![index].x as CGFloat
@@ -461,7 +475,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     func tryMoveAvatarLeft(elapsedTime: NSTimeInterval){
-        var avatarPosition = avatar.position.x
+        let avatarPosition = avatar.position.x
         var newPosition: CGPoint?
         var index = 0
         var indexReal = 3
@@ -535,7 +549,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let allActiveNodes = self.spheresLayer.children
             let count = allActiveNodes.count
             
-            var node2 = allActiveNodes[count-2] as! ContainerNode
+            let node2 = allActiveNodes[count-2] as! ContainerNode
             var node = allActiveNodes[count-1] as! ContainerNode
             
             if(node.hidden == true){
@@ -546,7 +560,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let yPoint = point.y * 2
             
             
-            var duration = calculateDurationFromPoints(yPoint, pos: node.position.y)
+            let duration = calculateDurationFromPoints(yPoint, pos: node.position.y)
             
             return self.moveDuration/2 - (self.moveDuration - duration)
         }else{
@@ -603,7 +617,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.controller.gameEngine.increaseScore()
                     self.controller.gameEngine.increaseScore()
                 }
-            default: println("PhysicsBody does not have a categoryBitMask")
+            default: print("PhysicsBody does not have a categoryBitMask")
             }
             if(pickedUpSphere){
                 sphere.physicsBody?.categoryBitMask = PhysicsCategory.Empty

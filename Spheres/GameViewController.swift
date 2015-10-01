@@ -102,11 +102,11 @@ class GameViewController: UIViewController {
         return true
     }
     
-    override func supportedInterfaceOrientations() -> Int {
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
+            return UIInterfaceOrientationMask.AllButUpsideDown
         } else {
-            return Int(UIInterfaceOrientationMask.All.rawValue)
+            return UIInterfaceOrientationMask.All
         }
     }
     
@@ -137,7 +137,7 @@ class GameViewController: UIViewController {
         
     }
     
-    func tapQuestionMark(AnyObject){
+    func tapQuestionMark(_: AnyObject){
         
             explanationBoard.image = UIImage(named: "ExplanationBoard")
             explanationBoard.hidden = false
@@ -155,7 +155,7 @@ class GameViewController: UIViewController {
         
     }
     
-    func tapPauseButton(AnyObject){
+    func tapPauseButton(_: AnyObject){
         if(isPaused == false){
             self.pauseButton.image = UIImage(named: "Play")
             isPaused = true
@@ -168,7 +168,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    func tapMusicButton(AnyObject) {
+    func tapMusicButton(_: AnyObject) {
         if(isMusicOn == true){
             self.musicButton.image = UIImage(named: "Music-off")
             isMusicOn = false
